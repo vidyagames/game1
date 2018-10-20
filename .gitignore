@@ -34,3 +34,16 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+# Mac specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Intellij
+.idea
+
+
+# unity-packman
+node_modules/
+.packman/
