@@ -29,7 +29,7 @@ public class Interactor : MonoBehaviour {
 
         if (Input.GetButtonDown("Interact"))
         {
-            Interactable.currentInteractable.StartInteraction();
+            Interactable.InteractWithCurrentObject();
         }
 	}
 

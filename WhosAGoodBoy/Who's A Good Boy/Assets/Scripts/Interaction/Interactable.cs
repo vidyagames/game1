@@ -27,6 +27,12 @@ public class Interactable : MonoBehaviour {
         currentInteractable = null;
     }
 
+    public static void InteractWithCurrentObject()
+    {
+        if (currentInteractable != null)
+            currentInteractable.StartInteraction();
+    }
+
     public virtual void StartInteraction()
     {
         Debug.Log("Started interaction with " + gameObject.name);
