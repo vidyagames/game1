@@ -13,7 +13,6 @@ jobs:
           environment:
             TEST_PLATFORM: editmode
           command: |
-            echo "$UNITY_LICENSE_CONTENT"
             ci/before_script.sh && ci/test.sh
       - run:
           name: Run playmode tests
