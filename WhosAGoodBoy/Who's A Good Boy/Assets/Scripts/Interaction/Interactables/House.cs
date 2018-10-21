@@ -23,16 +23,16 @@ public class House : MonoBehaviour
 
     private void OnEnable()
     {
-        interactable.BecameCurrentInteractable += OnBecameCurrentInteractable;
-        interactable.LostCurrentInteractable += OnLostCurrentInteractable;
-        interactable.InteractedWith += OnInteractedWith;
+        interactable.GainedFocus += OnGainedFocus;
+        interactable.LostFocus += OnLostFocus;
+        interactable.Interacted += OnInteractedWith;
     }
 
     private void OnDisable()
     {
-        interactable.BecameCurrentInteractable -= OnBecameCurrentInteractable;
-        interactable.LostCurrentInteractable -= OnLostCurrentInteractable;
-        interactable.InteractedWith -= OnInteractedWith;
+        interactable.GainedFocus -= OnGainedFocus;
+        interactable.LostFocus -= OnLostFocus;
+        interactable.Interacted -= OnInteractedWith;
     }
 
     public void OnInteractedWith(object sender, InteractedWithEventArgs args)
@@ -41,13 +41,13 @@ public class House : MonoBehaviour
         myRenderer.color = _interactionColor;
     }
 
-    public void OnBecameCurrentInteractable(object sender, EventArgs args)
+    public void OnGainedFocus(object sender, EventArgs args)
     {
         Debug.Log(gameObject.name + " is house interactable");
         myRenderer.color = _interactableColor;
     }
 
-    public void OnLostCurrentInteractable(object sender, EventArgs args)
+    public void OnLostFocus(object sender, EventArgs args)
     {
         Debug.Log(gameObject.name + " is house uninteractable");
         myRenderer.color = _defaultColor;

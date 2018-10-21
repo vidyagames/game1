@@ -14,24 +14,24 @@ public class Interactable : MonoBehaviour {
 
     public static Interactable currentInteractable;
 
-    public event EventHandler BecameCurrentInteractable;
-    public event EventHandler LostCurrentInteractable;
-    public event EventHandler<InteractedWithEventArgs> InteractedWith;
+    public event EventHandler GainedFocus;
+    public event EventHandler LostFocus;
+    public event EventHandler<InteractedWithEventArgs> Interacted;
 
     public void SetAsCurrentInteractable()
     {
         if (currentInteractable != this)
         {
             if (currentInteractable != null)
-                currentInteractable.UnshowAsInteractable();
+                currentInteractable.LoseFocus();
             currentInteractable = this;
-            ShowAsInteractable();
+            GainFocus();
         }
     }
     public static void ClearCurrentInteractable()
     {
         if (currentInteractable != null)
-            currentInteractable.UnshowAsInteractable();
+            currentInteractable.LoseFocus();
         currentInteractable = null;
     }
 
@@ -41,18 +41,18 @@ public class Interactable : MonoBehaviour {
             currentInteractable.StartInteraction(interactionType);
     }
 
-    public virtual void StartInteraction(InteractionType interactionType)
+    public void StartInteraction(InteractionType interactionType)
     {
-        InteractedWith.Raise(this, new InteractedWithEventArgs() { InteractionType = interactionType });
+        Interacted.Raise(this, new InteractedWithEventArgs() { InteractionType = interactionType });
     }
 
-    public virtual void ShowAsInteractable()
+    public void GainFocus()
     {
-        BecameCurrentInteractable.Raise(this, EventArgs.Empty);
+        GainedFocus.Raise(this, EventArgs.Empty);
     }
 
-    public virtual void UnshowAsInteractable()
+    public void LoseFocus()
     {
-        LostCurrentInteractable.Raise(this, EventArgs.Empty);
+        LostFocus.Raise(this, EventArgs.Empty);
     }
 }
