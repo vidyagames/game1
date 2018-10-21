@@ -47,3 +47,6 @@ sysinfo.txt
 # unity-packman
 node_modules/
 .packman/
+
+# Plugins
+**/*/Assets/Plugins*
