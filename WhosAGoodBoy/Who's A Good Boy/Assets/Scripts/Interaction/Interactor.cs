@@ -13,18 +13,24 @@ public class Interactor : MonoBehaviour {
 
     private Interactable _closestInteractableObject;
 
+    public bool CheckForInteractions;
+
 	// Use this for initialization
 	void Start () {
         _timeSinceLastCheck = 0;
+        CheckForInteractions = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        _timeSinceLastCheck += Time.deltaTime;
-        if (_timeSinceLastCheck > INTERACTION_FREQUENCY)
+        if (CheckForInteractions)
         {
-            _timeSinceLastCheck = 0f;
-            CheckForInteractables();
+            _timeSinceLastCheck += Time.deltaTime;
+            if (_timeSinceLastCheck > INTERACTION_FREQUENCY)
+            {
+                _timeSinceLastCheck = 0f;
+                CheckForInteractables();
+            }
         }
 
         if (Input.GetButtonDown("Interact"))
@@ -43,7 +49,7 @@ public class Interactor : MonoBehaviour {
             if (interactableObject != null)
             {
                 _closestInteractableObject = interactableObject;
-                _closestInteractableObject.SetAsCurrentInteractable();
+                Interactable.CurrentInteractable = _closestInteractableObject;
             }
         }
         else

@@ -238,6 +238,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4517555e091044588fa260334af0a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _useGenericInteractionIndicators: 1
+  _focusSprite: {fileID: 21300000, guid: 76c194e5f6b56164285868c3e10ee10a, type: 3}
+  _interactingSprite: {fileID: 21300000, guid: 7ad8809020bd2c54ca4fc52e915656d3, type: 3}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,6 +500,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   _interactionRadius: 0.5
+  CheckForInteractions: 0
 --- !u!1 &894178304
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,6 +626,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4517555e091044588fa260334af0a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _useGenericInteractionIndicators: 1
+  _focusSprite: {fileID: 21300000, guid: 76c194e5f6b56164285868c3e10ee10a, type: 3}
+  _interactingSprite: {fileID: 21300000, guid: 7ad8809020bd2c54ca4fc52e915656d3, type: 3}
 --- !u!1 &952241822
 GameObject:
   m_ObjectHideFlags: 0
