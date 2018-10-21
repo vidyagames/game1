@@ -122,8 +122,9 @@ GameObject:
   m_Component:
   - component: {fileID: 121321686}
   - component: {fileID: 121321687}
-  - component: {fileID: 121321688}
   - component: {fileID: 121321689}
+  - component: {fileID: 121321690}
+  - component: {fileID: 121321688}
   m_Layer: 8
   m_Name: House 2
   m_TagString: Untagged
@@ -226,6 +227,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &121321690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 121321685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4517555e091044588fa260334af0a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,7 +462,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.4, y: 0.4}
+    oldSize: {x: 1.25, y: 1.25}
     newSize: {x: 0.4, y: 0.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -494,8 +506,9 @@ GameObject:
   m_Component:
   - component: {fileID: 894178305}
   - component: {fileID: 894178306}
-  - component: {fileID: 894178307}
   - component: {fileID: 894178308}
+  - component: {fileID: 894178309}
+  - component: {fileID: 894178307}
   m_Layer: 8
   m_Name: House 1
   m_TagString: Untagged
@@ -598,6 +611,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &894178309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 894178304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4517555e091044588fa260334af0a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &952241822
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,14 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+
+public class InteractedWithEventArgs : EventArgs
+{
+    public InteractionType InteractionType;
+}
+
+public enum InteractionType { Sniff, Use, Attack}
 
 public class Interactable : MonoBehaviour {
 
     public static Interactable currentInteractable;
 
-    protected Color _interactableColor = new Color(1f, 1f, 1f, .25f);
-    protected Color _defaultColor = new Color(1f, 1f, 1f, 0f);
-    protected Color _interactionColor = new Color(.5f, .8f, .2f, .25f);
+    public event EventHandler BecameCurrentInteractable;
+    public event EventHandler LostCurrentInteractable;
+    public event EventHandler<InteractedWithEventArgs> InteractedWith;
 
     public void SetAsCurrentInteractable()
     {
@@ -27,24 +35,24 @@ public class Interactable : MonoBehaviour {
         currentInteractable = null;
     }
 
-    public static void InteractWithCurrentObject()
+    public static void InteractWithCurrentObject(InteractionType interactionType)
     {
         if (currentInteractable != null)
-            currentInteractable.StartInteraction();
+            currentInteractable.StartInteraction(interactionType);
     }
 
-    public virtual void StartInteraction()
+    public virtual void StartInteraction(InteractionType interactionType)
     {
-        Debug.Log("Started interaction with " + gameObject.name);
+        InteractedWith.Raise(this, new InteractedWithEventArgs() { InteractionType = interactionType });
     }
 
     public virtual void ShowAsInteractable()
     {
-        Debug.Log(gameObject.name + " is interactable");
+        BecameCurrentInteractable.Raise(this, EventArgs.Empty);
     }
 
     public virtual void UnshowAsInteractable()
     {
-        Debug.Log(gameObject.name + " is uninteractable");
+        LostCurrentInteractable.Raise(this, EventArgs.Empty);
     }
 }
