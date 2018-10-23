@@ -22,33 +22,13 @@ public static class CardinalUtils {
         return CardinalToVec[cardinal];
     }
 
-    /*
-        Given a previous input and a current input, determine if there should be a change in
-        direction. When a user is pressing more than one directional input, we have to resolve to a single direction.
-        This isn't as trivial as it seems, and really comes down to preference, but this method weights
-        the recent direction more (e.g. if already heading right and up is introduced, go up)
-     */
-    public static Cardinal? GetChange(Vector2 input, Vector2 prevInput)
+    public static Cardinal ToCardinal(this Vector2 vec)
     {
-        var inputSignVec = input.Sign();
-        var prevInputSign = prevInput.Sign();
+        return VecToCardinal[vec];
+    }
 
-        if (inputSignVec == Vector2.zero) {
-            return null;
-        }
-
-        // There has been no change
-        if (inputSignVec == prevInputSign) {
-            return null;
-        }
-
-        // If the input only has one dimension, there's not conflict
-        if (VecToCardinal.ContainsKey(inputSignVec)) {
-            return VecToCardinal[inputSignVec];
-        }
-
-        /*
-         Otherwise the input has two dimensions. Go in the newly introduced direction*/
-        return VecToCardinal[inputSignVec - prevInputSign];
+    public static bool IsCardinal(this Vector2 vec)
+    {
+        return VecToCardinal.ContainsKey(vec);
     }
 }

@@ -42,7 +42,38 @@ public class PlayerController : MonoBehaviour
     private Cardinal GetNextCardinal()
     {
         var axes = GetAxes();
-        Cardinal? cardinalChange = CardinalUtils.GetChange(axes, _prevAxes);
+        Cardinal? cardinalChange = GetDirectionChange(axes, _prevAxes);
         return cardinalChange ?? _prevCardinal;
+    }
+
+    /*
+        Given a previous input and a current input, determine if there should be a change in
+        direction. When a user is pressing more than one directional input, we have to resolve to a single direction.
+        This isn't as trivial as it seems, and really comes down to preference, but this method weights
+        the recent direction more (e.g. if already heading right and up is introduced, go up)
+     */
+    public static Cardinal? GetDirectionChange(Vector2 input, Vector2 prevInput)
+    {
+        // Get the sign vectors, which just tell us if *any* amount of x or y are present and in what direction
+        var inputSignVec = input.Sign();
+        var prevInputSignVec = prevInput.Sign();
+
+        // If the user has stopped pressing inputs or is pressing contradictory inputs
+        if (inputSignVec == Vector2.zero) {
+            return null;
+        }
+
+        if (inputSignVec == prevInputSignVec) {
+            return null;
+        }
+
+        // If the new input only has one dimension, there's no conflict to resolve
+        if (inputSignVec.IsCardinal()) {
+            return inputSignVec.ToCardinal();
+        }
+
+        /*
+         Otherwise the input has two dimensions. Go in the newly introduced direction*/
+        return (inputSignVec - prevInputSignVec).ToCardinal();
     }
 }

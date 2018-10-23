@@ -1,75 +1,49 @@
 ﻿using UnityEngine;
-using UnityEngine.TestTools;
 using NUnit.Framework;
-using System.Collections;
-using UnityEditor.SceneManagement;
+using System.Collections.Generic;
 
 public class CardinalUtilsTest {
-    private static readonly Vector2 _downRight = Vector2.down + Vector2.right;
 
     [Test]
-    public void GetChange_SameVectors_ReturnsNull()
+    public void ToVector2_N_Roundtrip()
     {
-        Assert.IsNull(CardinalUtils.GetChange(Vector2.down, Vector2.down));
+        Assert.AreEqual(Vector2.up, Cardinal.N.ToVector2().ToCardinal().ToVector2());
     }
 
     [Test]
-    public void GetChange_SameVectors_DifferentMagnitudes_ReturnsNull()
+    public void ToVector2_S_Roundtrip()
     {
-        Assert.IsNull(CardinalUtils.GetChange(Vector2.down, Vector2.down * .5f));
+        Assert.AreEqual(Vector2.down, Cardinal.S.ToVector2().ToCardinal().ToVector2());
     }
 
     [Test]
-    public void GetChange_DifferentSimple_ReturnsNew()
+    public void ToVector2_E_Roundtript()
     {
-        Assert.AreEqual(Cardinal.S, CardinalUtils.GetChange(Vector2.down, Vector2.up));
+        Assert.AreEqual(Vector2.right, Cardinal.E.ToVector2().ToCardinal().ToVector2());
     }
 
     [Test]
-    public void GetChange_SameComplex_ReturnsNull()
+    public void ToVector2_W_Roundtrip()
     {
-        Assert.IsNull(CardinalUtils.GetChange(_downRight, _downRight));
+        Assert.AreEqual(Vector2.left, Cardinal.W.ToVector2().ToCardinal().ToVector2());
     }
 
     [Test]
-    public void GetChange_ComplexPrevSimpleNext_ReturnsNext()
+    public void ToCardinal_NonCardinalVec_ReturnsNull()
     {
-        Assert.AreEqual(Cardinal.W, CardinalUtils.GetChange(Vector2.left, _downRight));
+        Assert.Throws<KeyNotFoundException>(() => { Vector2.zero.ToCardinal(); });
     }
 
     [Test]
-    public void GetChange_SimplePrevComplexNext_ReturnsCorrectCardinal()
+    public void IsCardinal_NonCardinalVec_ReturnsFalse()
     {
-        Assert.AreEqual(Cardinal.S, CardinalUtils.GetChange(_downRight, Vector2.right));
+        Assert.IsFalse(Vector2.zero.IsCardinal());
     }
 
     [Test]
-    public void GetChange_ZeroNext_ReturnsNull()
+    public void IsCardinal_CardinalVec_ReturnsTrue()
     {
-        Assert.IsNull(CardinalUtils.GetChange(Vector2.zero, Vector2.right));
+        Assert.IsTrue(Vector2.left.IsCardinal());
     }
 
-    [Test]
-    public void ToVector2_N_ReturnsUp()
-    {
-        Assert.AreEqual(Vector2.up, Cardinal.N.ToVector2());
-    }
-
-    [Test]
-    public void ToVector2_S_ReturnsDown()
-    {
-        Assert.AreEqual(Vector2.down, Cardinal.S.ToVector2());
-    }
-
-    [Test]
-    public void ToVector2_E_Returnsright()
-    {
-        Assert.AreEqual(Vector2.right, Cardinal.E.ToVector2());
-    }
-
-    [Test]
-    public void ToVector2_W_ReturnsLeft()
-    {
-        Assert.AreEqual(Vector2.left, Cardinal.W.ToVector2());
-    }
 }
