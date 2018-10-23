@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class SetColliderSize : MonoBehaviour {
@@ -11,7 +9,7 @@ public class SetColliderSize : MonoBehaviour {
 	void Awake () {
         myCollider = GetComponent<BoxCollider2D>();
 	}
-	
+
 	public void SetXSize(float x)
     {
         myCollider.size = new Vector2(x, myCollider.size.y);
