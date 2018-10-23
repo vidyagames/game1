@@ -1,32 +1,48 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(CharacterMovement))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
-    private Animator animator;
+    public CharacterMovement Movement;
 
-    private float xSpeed;
-    private float ySpeed;
+    // We have to keep track of previous input and direction to handle edge cases with input and cardinal movement
+    // (See CardinalUtils)
+    private Vector2 _prevAxes;
+    private Cardinal _prevCardinal;
 
-    // Use this for initialization
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        var renderer = GetComponent<Renderer>();
+        var axes = GetAxes();
+        var moveCardinal = GetNextCardinal();
 
-        xSpeed = Input.GetAxis("Horizontal");
-        ySpeed = Input.GetAxis("Vertical");
-        animator.SetFloat("xSpeed", xSpeed);
-        animator.SetFloat("ySpeed", ySpeed);
+        if (ShouldStopMoving(axes)) {
+            Movement.Stop();
+        }
+        else {
+            Movement.Move(moveCardinal);
+        }
 
-        transform.Translate(xSpeed * Time.deltaTime, ySpeed * Time.deltaTime, 0f);
+        _prevAxes = axes;
+        _prevCardinal = moveCardinal;
+    }
+
+    private Vector2 GetAxes()
+    {
+        return new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+    }
+
+    bool ShouldStopMoving(Vector2 Axes)
+    {
+        float sqrMagnitude = Axes.SqrMagnitude();
+        return sqrMagnitude < Single.Epsilon;
+    }
+
+    private Cardinal GetNextCardinal()
+    {
+        var axes = GetAxes();
+        Cardinal? cardinalChange = CardinalUtils.GetChange(axes, _prevAxes);
+        return cardinalChange ?? _prevCardinal;
     }
 }
