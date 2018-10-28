@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 121321689}
   - component: {fileID: 121321687}
   - component: {fileID: 121321688}
+  - component: {fileID: 121321690}
   m_Layer: 8
   m_Name: Water
   m_TagString: Untagged
@@ -230,6 +231,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &121321690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 121321685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0814c90e39033794c916db2e4425105b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sceneNameToLoad: TestWaterGame
 --- !u!1 &416041085
 GameObject:
   m_ObjectHideFlags: 0
