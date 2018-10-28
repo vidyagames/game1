@@ -8,7 +8,7 @@ public class CharacterMovement : MonoBehaviour, CardinalMovement {
 
     public bool IsMoving { get; private set; }
 
-    public Cardinal Facing { get; private set; }
+    public Cardinal Facing { get; set; }
 
     void Start()
     {

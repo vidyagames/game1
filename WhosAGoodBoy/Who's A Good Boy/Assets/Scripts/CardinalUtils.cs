@@ -27,6 +27,16 @@ public static class CardinalUtils {
         return VecToCardinal[vec];
     }
 
+    public static Cardinal ToCardinal(this int i)
+    {
+        return (Cardinal)i;
+    }
+
+    public static int ToInt(this Cardinal cardinal)
+    {
+        return (int)cardinal;
+    }
+
     public static bool IsCardinal(this Vector2 vec)
     {
         return VecToCardinal.ContainsKey(vec);

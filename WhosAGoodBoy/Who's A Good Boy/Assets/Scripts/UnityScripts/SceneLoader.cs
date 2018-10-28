@@ -24,6 +24,7 @@ public class SceneLoader : MonoBehaviour {
 
     private void OnInteractedWith(object sender, InteractedWithEventArgs args)
     {
+        SavedGameManager.Instance.Save();
         SceneManager.LoadScene(_sceneNameToLoad);
     }
 }

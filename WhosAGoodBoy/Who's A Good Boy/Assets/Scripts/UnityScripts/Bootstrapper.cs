@@ -11,8 +11,9 @@ public class Bootstrapper : MonoBehaviour {
     {
         foreach (GameObject GO in _bootStrappedObjects)
         {
-            Instantiate(GO);
+            if (transform.Find(GO.name) == null)
+                Instantiate(GO, transform);
         }
-        Destroy(gameObject);
+        Destroy(this);
     }
 }
