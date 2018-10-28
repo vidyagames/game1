@@ -1224,7 +1224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _defaultInteractionType: 1
-  _useGenericInteractionIndicators: 0
+  _useGenericInteractionIndicators: 1
   _focusSprite: {fileID: 0}
   _interactingSprite: {fileID: 0}
 --- !u!212 &2066669797

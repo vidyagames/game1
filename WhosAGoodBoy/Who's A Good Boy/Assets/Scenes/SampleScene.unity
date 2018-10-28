@@ -243,6 +243,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _sceneNameToLoad: TestWaterGame
+--- !u!1 &319590525 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1191331038231544, guid: 81d1075192fed854ba27670a4057a845,
+    type: 2}
+  m_PrefabInternal: {fileID: 1859374307}
+--- !u!114 &319590528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 319590525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16e0fab56a1712545bdc4954bb12958e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &416041085
 GameObject:
   m_ObjectHideFlags: 0
