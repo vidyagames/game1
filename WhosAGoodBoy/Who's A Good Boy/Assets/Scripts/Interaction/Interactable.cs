@@ -34,6 +34,14 @@ public class Interactable : MonoBehaviour {
     public event EventHandler<InteractedWithEventArgs> Interacted;
 
     [SerializeField]
+    private InteractionType _defaultInteractionType = InteractionType.Use;
+
+    public InteractionType GetDefaultInteractionType()
+    {
+        return _defaultInteractionType;
+    }
+
+    [SerializeField]
     private bool _useGenericInteractionIndicators;
     [SerializeField]
     private Sprite _focusSprite;
@@ -41,6 +49,15 @@ public class Interactable : MonoBehaviour {
     private Sprite _interactingSprite;
     private GameObject _interactionIndicator;
     private SpriteRenderer _interactionIndicatorRend;
+    private ParticleSystem _interactionIndicatorPS;
+
+    public void Start()
+    {
+        if (_focusSprite == null)
+            _focusSprite = InteractionsManager.Instance.GetDefaultInteractableSprite();
+        if (_interactionIndicator == null)
+            _interactingSprite = InteractionsManager.Instance.GetDefaultInteractingSprite();
+    }
 
     public static void ClearCurrentInteractable()
     {
@@ -61,6 +78,7 @@ public class Interactable : MonoBehaviour {
         if (_useGenericInteractionIndicators)
         {
             _interactionIndicatorRend.sprite = _interactingSprite;
+            _interactionIndicatorPS.Stop();
         }
     }
 
@@ -72,6 +90,9 @@ public class Interactable : MonoBehaviour {
             if (_interactionIndicator == null)
             {
                 _interactionIndicator = new GameObject("interaction indicator");
+                _interactionIndicatorPS = Instantiate(InteractionsManager.Instance.GetDefaultFocusPS()).GetComponent<ParticleSystem>();
+                _interactionIndicatorPS.transform.localPosition = Vector3.zero;
+                _interactionIndicatorPS.transform.SetParent(_interactionIndicator.transform);
                 _interactionIndicatorRend = _interactionIndicator.AddComponent<SpriteRenderer>();
                 _interactionIndicator.transform.SetParent(gameObject.transform);
                 _interactionIndicator.transform.localPosition = Vector3.zero;
@@ -79,6 +100,7 @@ public class Interactable : MonoBehaviour {
                 _interactionIndicatorRend.sortingOrder = GetComponent<SpriteRenderer>().sortingOrder + 1;
             }
             _interactionIndicatorRend.sprite = _focusSprite;
+            _interactionIndicatorPS.Play();
         }
     }
 
@@ -88,6 +110,7 @@ public class Interactable : MonoBehaviour {
         if (_useGenericInteractionIndicators)
         {
             _interactionIndicatorRend.sprite = null;
+            _interactionIndicatorPS.Stop();
         }
     }
 }

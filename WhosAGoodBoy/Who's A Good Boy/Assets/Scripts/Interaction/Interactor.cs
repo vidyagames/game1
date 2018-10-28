@@ -9,6 +9,16 @@ public class Interactor : MonoBehaviour {
     private const float INTERACTION_FREQUENCY = .25f;
     [SerializeField]
     private float _interactionRadius = 1f;
+    [SerializeField]
+    private SpriteRenderer _interactionIconRenderer;
+    [SerializeField]
+    private Sprite _genericInteractionIcon;
+    [SerializeField]
+    private Sprite _sniffInteractionIcon;
+    [SerializeField]
+    private Sprite _useInteractionIcon;
+    [SerializeField]
+    private Sprite _attackInteractionIcon;
     private float _timeSinceLastCheck;
 
     private Interactable _closestInteractableObject;
@@ -50,16 +60,39 @@ public class Interactor : MonoBehaviour {
             {
                 _closestInteractableObject = interactableObject;
                 Interactable.CurrentInteractable = _closestInteractableObject;
+                SetInteractionType(Interactable.CurrentInteractable.GetDefaultInteractionType());
             }
         }
         else
         {
             Interactable.ClearCurrentInteractable();
+            ClearInteraction();
         }
     }
 
     public void SetInteractionRadius(float newRadius)
     {
         _interactionRadius = newRadius;
+    }
+
+    public void SetInteractionType(InteractionType interactionType)
+    {
+        switch (interactionType) {
+            case InteractionType.Attack:
+                _interactionIconRenderer.sprite = _attackInteractionIcon;
+                break;
+            case InteractionType.Sniff:
+                _interactionIconRenderer.sprite = _sniffInteractionIcon;
+                break;
+            case InteractionType.Use:
+            default:
+                _interactionIconRenderer.sprite = _useInteractionIcon;
+                break;
+        }
+    }
+
+    public void ClearInteraction()
+    {
+        _interactionIconRenderer.sprite = null;
     }
 }
