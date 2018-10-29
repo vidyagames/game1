@@ -37,6 +37,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4077902335566502}
   - component: {fileID: 114650080793296422}
+  - component: {fileID: 114862373856599202}
+  - component: {fileID: 114332870744795268}
   m_Layer: 0
   m_Name: CameraRig
   m_TagString: Untagged
@@ -65,7 +67,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1590373111661208}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4077902335566502}
@@ -118,6 +120,20 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1590373111661208}
   m_Enabled: 1
+--- !u!114 &114332870744795268
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1912884842166842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7576f2f300dc44d028e929f5e5d62265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Fence: {fileID: 114862373856599202}
+  Follower: {fileID: 114650080793296422}
+  BoundCamera: {fileID: 0}
 --- !u!114 &114650080793296422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -129,5 +145,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e9dbeeff2f014af7bd84df389d35de2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  DampTime: 0.2
+  TransformToFollow: {fileID: 0}
+  DampTime: 0
+--- !u!114 &114862373856599202
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1912884842166842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d11e85d60aa4954b6e073e09f95d7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Fence:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  FencedBound:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  ShowBounds: 0
