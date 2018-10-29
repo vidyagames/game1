@@ -7,8 +7,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public CharacterMovement Movement;
 
-    // We have to keep track of previous input and direction to handle edge cases with input and cardinal movement
-    // (See CardinalUtils)
     private Vector2 _prevAxes;
     private Cardinal _prevCardinal;
 

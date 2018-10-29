@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-using System;
 
 public static class Extensions{
 
@@ -22,6 +20,7 @@ public static class Extensions{
         }
         return closestCollider;
     }
+
 
     public static void Raise(this EventHandler handler, object sender, EventArgs args)
     {
