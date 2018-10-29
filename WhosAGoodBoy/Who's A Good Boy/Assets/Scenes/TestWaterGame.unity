@@ -1088,6 +1088,11 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81d1075192fed854ba27670a4057a845, type: 2}
   m_IsPrefabAsset: 0
+--- !u!20 &721924804 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 20051795680367292, guid: dcbc0b2dcd2414948bd630d8b7aa021f,
+    type: 2}
+  m_PrefabInternal: {fileID: 1459355363}
 --- !u!4 &1207257302 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4809583677482124, guid: 8199368de155e9d4fadb8e1be451c73a,
@@ -1178,6 +1183,46 @@ Prefab:
       propertyPath: Target
       value: 
       objectReference: {fileID: 1207257302}
+    - target: {fileID: 114650080793296422, guid: dcbc0b2dcd2414948bd630d8b7aa021f,
+        type: 2}
+      propertyPath: TransformToFollow
+      value: 
+      objectReference: {fileID: 1207257302}
+    - target: {fileID: 114650080793296422, guid: dcbc0b2dcd2414948bd630d8b7aa021f,
+        type: 2}
+      propertyPath: DampTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114332870744795268, guid: dcbc0b2dcd2414948bd630d8b7aa021f,
+        type: 2}
+      propertyPath: BoundCamera
+      value: 
+      objectReference: {fileID: 721924804}
+    - target: {fileID: 114862373856599202, guid: dcbc0b2dcd2414948bd630d8b7aa021f,
+        type: 2}
+      propertyPath: Fence.m_Extent.x
+      value: 8.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 114862373856599202, guid: dcbc0b2dcd2414948bd630d8b7aa021f,
+        type: 2}
+      propertyPath: Fence.m_Extent.y
+      value: 2.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 114862373856599202, guid: dcbc0b2dcd2414948bd630d8b7aa021f,
+        type: 2}
+      propertyPath: ShowBounds
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114862373856599202, guid: dcbc0b2dcd2414948bd630d8b7aa021f,
+        type: 2}
+      propertyPath: Fence.m_Center.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114862373856599202, guid: dcbc0b2dcd2414948bd630d8b7aa021f,
+        type: 2}
+      propertyPath: Fence.m_Center.y
+      value: 0.51
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcbc0b2dcd2414948bd630d8b7aa021f, type: 2}
   m_IsPrefabAsset: 0
