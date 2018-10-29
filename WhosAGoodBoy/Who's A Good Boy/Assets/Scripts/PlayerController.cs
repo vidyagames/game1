@@ -4,26 +4,37 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterMovement))]
 public class PlayerController : MonoBehaviour
 {
+    private static PlayerController _player;
+    public static PlayerController Player {
+        get { return _player; }
+    }
+
     [SerializeField]
     public CharacterMovement Movement;
 
     private Vector2 _prevAxes;
     private Cardinal _prevCardinal;
+    private Cardinal _curCardinal;
+
+    private void Awake()
+    {
+        _player = this;
+    }
 
     void Update()
     {
         var axes = GetAxes();
-        var moveCardinal = GetNextCardinal();
+        _curCardinal = GetNextCardinal();
 
         if (ShouldStopMoving(axes)) {
             Movement.Stop();
         }
         else {
-            Movement.Move(moveCardinal);
+            Movement.Move(_curCardinal);
         }
 
         _prevAxes = axes;
-        _prevCardinal = moveCardinal;
+        _prevCardinal = _curCardinal;
     }
 
     private Vector2 GetAxes()
@@ -42,6 +53,16 @@ public class PlayerController : MonoBehaviour
         var axes = GetAxes();
         Cardinal? cardinalChange = GetDirectionChange(axes, _prevAxes);
         return cardinalChange ?? _prevCardinal;
+    }
+
+    public Cardinal GetFacing()
+    {
+        return Movement.Facing;
+    }
+
+    public void SetFacing(Cardinal direction)
+    {
+        Movement.Facing = direction;
     }
 
     /*
