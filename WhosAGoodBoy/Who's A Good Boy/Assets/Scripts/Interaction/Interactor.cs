@@ -45,7 +45,8 @@ public class Interactor : MonoBehaviour {
 
         if (Input.GetButtonDown("Interact"))
         {
-            Interactable.InteractWithCurrentObject(InteractionType.Use);
+            if (_closestInteractableObject != null)
+                _closestInteractableObject.StartInteraction(InteractionType.Use);
         }
 	}
 
@@ -59,13 +60,15 @@ public class Interactor : MonoBehaviour {
             if (interactableObject != null)
             {
                 _closestInteractableObject = interactableObject;
-                Interactable.CurrentInteractable = _closestInteractableObject;
-                SetInteractionType(Interactable.CurrentInteractable.GetDefaultInteractionType());
+                _closestInteractableObject.GainFocus();
+                SetInteractionType(_closestInteractableObject.GetDefaultInteractionType());
             }
         }
         else
         {
-            Interactable.ClearCurrentInteractable();
+            if (_closestInteractableObject != null)
+                _closestInteractableObject.LoseFocus();
+            _closestInteractableObject = null;
             ClearInteraction();
         }
     }
