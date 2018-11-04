@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour, CardinalMovement {
-    private static readonly float DEFAULT_SPEED = 3;
+    public static readonly float DEFAULT_SPEED = 3;
 
     [SerializeField]
-    public float Speed { get; private set; }
+    public float Speed { get; set; }
 
     public bool IsMoving { get; private set; }
 

@@ -55,6 +55,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   overworldSceneName: SampleScene
   swimmingGameSceneName: TestWaterGame
+  MinigameDifficulty: 5
 --- !u!114 &114550422122345354
 MonoBehaviour:
   m_ObjectHideFlags: 1

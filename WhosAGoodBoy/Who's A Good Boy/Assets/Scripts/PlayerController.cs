@@ -4,22 +4,12 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterMovement))]
 public class PlayerController : MonoBehaviour
 {
-    private static PlayerController _player;
-    public static PlayerController Player {
-        get { return _player; }
-    }
-
     [SerializeField]
     public CharacterMovement Movement;
 
     private Vector2 _prevAxes;
     private Cardinal _prevCardinal;
     private Cardinal _curCardinal;
-
-    private void Awake()
-    {
-        _player = this;
-    }
 
     void Update()
     {

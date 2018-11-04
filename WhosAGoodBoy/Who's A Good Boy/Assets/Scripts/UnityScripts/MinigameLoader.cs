@@ -4,11 +4,19 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Interactable))]
-public class SceneLoader : MonoBehaviour {
+public class MinigameLoader : MonoBehaviour {
 
     private Interactable _interactable;
     [SerializeField]
     private string _sceneNameToLoad;
+    [SerializeField]
+    [Range(1f, 10f)]
+    private int _minigameDifficulty = 5;
+
+    [SerializeField]
+    private MinigameRewards _rewards;
+    [SerializeField]
+    private MinigamePenalties _penalities;
 
     void Awake()
     {
@@ -25,6 +33,9 @@ public class SceneLoader : MonoBehaviour {
     private void OnInteractedWith(object sender, InteractedWithEventArgs args)
     {
         SavedGameManager.Instance.Save();
-        SceneManager.LoadScene(_sceneNameToLoad);
+        LevelManager.Instance.MinigameDifficulty = _minigameDifficulty;
+        LevelManager.Instance.MinigameRewards = _rewards;
+        LevelManager.Instance.MinigamePenalties = _penalities;
+        LevelManager.Instance.LoadMinigame(_sceneNameToLoad);
     }
 }

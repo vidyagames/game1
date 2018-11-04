@@ -72,7 +72,7 @@ LightmapSettings:
     m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
-    m_BakeBackend: 0
+    m_BakeBackend: 1
     m_PVRSampling: 1
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
@@ -113,6 +113,34 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &30607502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 30607503}
+  m_Layer: 8
+  m_Name: Won Game Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &30607503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 30607502}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.82, y: 2.89, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 121321686}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &121321685
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +169,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.47, y: 1.08, z: 0}
   m_LocalScale: {x: 0.87509406, y: 1.3557222, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 30607503}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -242,7 +271,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0814c90e39033794c916db2e4425105b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _sceneNameToLoad: TestWaterGame
+  _sceneNameToLoad: SwimGame
+  _minigameDifficulty: 5
+  _rewards:
+    Position: {fileID: 30607503}
+    OnWon:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: NoParametersUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
+  _penalities:
+    Position: {fileID: 0}
+    OnLost:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: NoParametersUnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        PublicKeyToken=null
 --- !u!1 &319590525 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1191331038231544, guid: 81d1075192fed854ba27670a4057a845,
