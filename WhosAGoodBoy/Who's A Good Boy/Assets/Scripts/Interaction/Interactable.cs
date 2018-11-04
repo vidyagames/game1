@@ -8,7 +8,7 @@ public class InteractedWithEventArgs : EventArgs
     public InteractionType InteractionType;
 }
 
-public enum InteractionType { Sniff, Use, Attack}
+public enum InteractionType { Sniff, Use, Attack, Talk}
 
 public class Interactable : MonoBehaviour {
 

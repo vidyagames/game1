@@ -16,6 +16,8 @@ public class Interactor : MonoBehaviour {
     [SerializeField]
     private Sprite _sniffInteractionIcon;
     [SerializeField]
+    private Sprite _talkInteractionIcon;
+    [SerializeField]
     private Sprite _useInteractionIcon;
     [SerializeField]
     private Sprite _attackInteractionIcon;
@@ -86,6 +88,9 @@ public class Interactor : MonoBehaviour {
                 break;
             case InteractionType.Sniff:
                 _interactionIconRenderer.sprite = _sniffInteractionIcon;
+                break;
+            case InteractionType.Talk:
+                _interactionIconRenderer.sprite = _talkInteractionIcon;
                 break;
             case InteractionType.Use:
             default:
