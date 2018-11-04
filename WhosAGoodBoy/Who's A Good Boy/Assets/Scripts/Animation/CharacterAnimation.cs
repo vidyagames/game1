@@ -22,10 +22,8 @@ namespace Animation
             var isMoving = Movement.IsMoving;
             var facingVec = Movement.Facing.ToVector2();
 
-            if (isMoving) {
-                Animator.SetFloat(Parameters.XDir, facingVec.x);
-                Animator.SetFloat(Parameters.YDir, facingVec.y);
-            }
+            Animator.SetFloat(Parameters.XDir, facingVec.x);
+            Animator.SetFloat(Parameters.YDir, facingVec.y);
         }
 
         void SetIsWalking()

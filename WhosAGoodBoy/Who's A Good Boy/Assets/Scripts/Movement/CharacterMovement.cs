@@ -16,7 +16,7 @@ public class CharacterMovement : MonoBehaviour, CardinalMovement {
         Speed = DEFAULT_SPEED;
     }
 
-    void FixedUpdate()
+    void Update()
     {
         DoMove();
     }
