@@ -28,7 +28,7 @@ public class SwimGame : MinigameRunner {
 
     private void OnTouchedExit(object sender, System.EventArgs args)
     {
-        Passed();
+        Won();
     }
 
     // Use this for initialization
@@ -49,7 +49,7 @@ public class SwimGame : MinigameRunner {
         StaminaSlider.value = Mathf.InverseLerp(0, _maxStamina, _stamina);
 
         if (_stamina <= 0f)
-            Failed();
+            Lost();
 	}
 
 
