@@ -21,7 +21,7 @@ public class FencedIn : MonoBehaviour {
 
     private void Update()
     {
-        NotifySubscribers();
+        CheckOutOfBoundsState();
     }
 
     private void OnDrawGizmos()
@@ -35,16 +35,28 @@ public class FencedIn : MonoBehaviour {
         Gizmos.DrawWireCube(FencedBound.center, FencedBound.size);
     }
 
-    private void NotifySubscribers()
+    private void CheckOutOfBoundsState()
     {
         bool outOfBounds = !IsInBounds();
 
-        if (_previouslyOutOfBounds && !outOfBounds) {
-            FireBackInBoundsEvent();
-            _previouslyOutOfBounds = false;
+        if (outOfBounds) {
+            HandleOutOfBounds();
             return;
         }
 
+        if (_previouslyOutOfBounds) {
+            HandleBackInBounds();
+        }
+    }
+
+    private void HandleBackInBounds()
+    {
+        FireBackInBoundsEvent();
+        _previouslyOutOfBounds = false;
+    }
+
+    private void HandleOutOfBounds()
+    {
         FireOutOfBoundsEvent();
         _previouslyOutOfBounds = true;
     }

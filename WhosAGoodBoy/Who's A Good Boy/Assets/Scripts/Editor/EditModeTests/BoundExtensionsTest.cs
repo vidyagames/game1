@@ -99,4 +99,28 @@ public class BoundExtensionsTest {
         Assert.AreEqual(new Vector3(-3, 0, 0), inner.Delta(outer));
     }
 
+    [Test]
+    public void Contains_WhenSameCenterOuterLarger_ReturnsTrue()
+    {
+        Bounds inner = new Bounds(new Vector3(0, 0, 0), new Vector3(2, 2, 2) );
+        Bounds outer = new Bounds(new Vector3(0, 0, 0), new Vector3(6, 6, 6) );
+        Assert.IsTrue(outer.Contains(inner));
+    }
+
+
+    [Test]
+    public void Contains_WhenSameCenterOuterSmaller_ReturnsTrue()
+    {
+        Bounds inner = new Bounds(new Vector3(0, 0, 0), new Vector3(2, 2, 2) );
+        Bounds outer = new Bounds(new Vector3(0, 0, 0), new Vector3(6, 6, 6) );
+        Assert.IsFalse(inner.Contains(outer));
+    }
+
+    [Test]
+    public void Contains_WhenTotallyDisjoint_ReturnsFalse()
+    {
+        Bounds inner = new Bounds(new Vector3(20, 20, 20), new Vector3(2, 2, 2) );
+        Bounds outer = new Bounds(new Vector3(0, 0, 0), new Vector3(6, 6, 6) );
+        Assert.IsFalse(inner.Contains(outer));
+    }
 }

@@ -361,7 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Fence:
     m_Center: {x: 1.5, y: 2, z: 0}
-    m_Extent: {x: 9, y: 9, z: 0}
+    m_Extent: {x: 9, y: 9, z: 10}
   FencedBound:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.1, y: 0.1, z: 0}
