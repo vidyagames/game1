@@ -12,23 +12,6 @@ public enum InteractionType { Sniff, Use, Attack}
 
 public class Interactable : MonoBehaviour {
 
-    private static Interactable currentInteractable_internal;
-    public static Interactable CurrentInteractable
-    {
-        set
-        {
-            if (currentInteractable_internal != value)
-            {
-                if (currentInteractable_internal != null)
-                    currentInteractable_internal.LoseFocus();
-                currentInteractable_internal = value;
-                if (currentInteractable_internal != null)
-                    currentInteractable_internal.GainFocus();
-            }
-        }
-        get { return currentInteractable_internal; }
-    }
-
     public event EventHandler GainedFocus;
     public event EventHandler LostFocus;
     public event EventHandler<InteractedWithEventArgs> Interacted;
@@ -57,19 +40,6 @@ public class Interactable : MonoBehaviour {
             _focusSprite = InteractionsManager.Instance.GetDefaultInteractableSprite();
         if (_interactionIndicator == null)
             _interactingSprite = InteractionsManager.Instance.GetDefaultInteractingSprite();
-    }
-
-    public static void ClearCurrentInteractable()
-    {
-        if (CurrentInteractable != null)
-            CurrentInteractable.LoseFocus();
-        CurrentInteractable = null;
-    }
-
-    public static void InteractWithCurrentObject(InteractionType interactionType)
-    {
-        if (CurrentInteractable != null)
-            CurrentInteractable.StartInteraction(interactionType);
     }
 
     public void StartInteraction(InteractionType interactionType)
