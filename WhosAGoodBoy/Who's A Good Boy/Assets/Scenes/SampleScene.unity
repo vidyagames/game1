@@ -635,6 +635,8 @@ MonoBehaviour:
     type: 3}
   _sniffInteractionIcon: {fileID: 21300000, guid: 76c194e5f6b56164285868c3e10ee10a,
     type: 3}
+  _talkInteractionIcon: {fileID: 21300000, guid: 84389515f52d9154fb18538eb6a84c55,
+    type: 3}
   _useInteractionIcon: {fileID: 21300000, guid: 76c194e5f6b56164285868c3e10ee10a,
     type: 3}
   _attackInteractionIcon: {fileID: 21300000, guid: 76c194e5f6b56164285868c3e10ee10a,
@@ -787,7 +789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f4517555e091044588fa260334af0a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _defaultInteractionType: 1
+  _defaultInteractionType: 3
   _useGenericInteractionIndicators: 1
   _focusSprite: {fileID: 0}
   _interactingSprite: {fileID: 0}
