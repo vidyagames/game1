@@ -4,13 +4,14 @@ using System;
 using UnityEngine.SceneManagement;
 
 [Serializable]
-public class CharacterData {
+public class SaveData {
+    public string currentLevel;
     public Vector3 lastOverworldPosition;
-    public int facing;
+    public int lastOverworldFacing;
 }
 
 public class SavedGameManager : MonoBehaviour {
-    public CharacterData characterData;
+    private SaveData saveData;
     string dataPath;
 
     public static SavedGameManager Instance;
@@ -22,6 +23,8 @@ public class SavedGameManager : MonoBehaviour {
             Instance = this;
         else if (Instance != this)
             Destroy(this);
+
+        saveData = new SaveData();
     }
 
     void Start()
@@ -29,70 +32,72 @@ public class SavedGameManager : MonoBehaviour {
         dataPath = Path.Combine(Application.persistentDataPath, "SavedGame.txt");
     }
 
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneFinishedLoading;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneFinishedLoading;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.O))
-            SaveGameData(characterData, dataPath);
+            Save();
 
         if (Input.GetKeyDown(KeyCode.P)) {
-            characterData = LoadGameData(dataPath);
-            SetStates(characterData);
+            Load();
         }
     }
 
-    static void SetData(ref CharacterData data)
+    void SetData()
     {
-        if (SceneFunctions.OverWorldSceneName == SceneManager.GetActiveScene().name)
-            data.lastOverworldPosition = PlayerController.Player.transform.position;
-        data.facing = PlayerController.Player.GetFacing().ToInt();
+        if (LevelManager.Instance.overworldSceneName == SceneManager.GetActiveScene().name)
+        {
+            saveData.lastOverworldPosition = PlayerController.Player.transform.position;
+            saveData.lastOverworldFacing = PlayerController.Player.GetFacing().ToInt();
+        }
     }
 
-    static void SetStates(CharacterData data)
+    void SetStates()
     {
-        if (SceneFunctions.OverWorldSceneName == SceneManager.GetActiveScene().name)
-            PlayerController.Player.transform.position = data.lastOverworldPosition;
-        PlayerController.Player.SetFacing(data.facing.ToCardinal());
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (LevelManager.Instance.overworldSceneName == currentScene.name) {
+            PlayerController.Player.transform.position = saveData.lastOverworldPosition;
+            PlayerController.Player.SetFacing(saveData.lastOverworldFacing.ToCardinal());
+        }
     }
 
     public void Save()
     {
-        SaveGameData(characterData, dataPath);
-    }
-
-    public void LoadFromFile()
-    {
-        LoadGameData(dataPath);
-        SetStates(characterData);
-    }
-
-    public void Load()
-    {
-        SetStates(characterData);
-    }
-
-    static void SaveGameData(CharacterData data, string path)
-    {
         Debug.Log("Saving to File");
-        SetData(ref data);
-        string jsonString = JsonUtility.ToJson(data);
+        SetData();
+        string jsonString = JsonUtility.ToJson(saveData);
 
-        using (StreamWriter streamWriter = File.CreateText(path)) {
+        using (StreamWriter streamWriter = File.CreateText(dataPath)) {
             streamWriter.Write(jsonString);
         }
     }
 
-    static CharacterData LoadGameData(string path)
+    public void LoadFromFile()
     {
         Debug.Log("Loading from File");
-        using (StreamReader streamReader = File.OpenText(path)) {
+        using (StreamReader streamReader = File.OpenText(dataPath)) {
             string jsonString = streamReader.ReadToEnd();
-            return JsonUtility.FromJson<CharacterData>(jsonString);
+            saveData = JsonUtility.FromJson<SaveData>(jsonString);
         }
+        SetStates();
     }
 
-    private void OnLevelWasLoaded()
+    public void Load()
     {
-        if (Instance == this)
-            Load();
+        SetStates();
+    }
+
+    private void OnSceneFinishedLoading(Scene scene, LoadSceneMode mode)
+    {
+        Load();
     }
 }
