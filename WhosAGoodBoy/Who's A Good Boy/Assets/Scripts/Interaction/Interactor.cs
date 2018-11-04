@@ -59,7 +59,7 @@ public class Interactor : MonoBehaviour {
         {
             Collider2D closestCollider = interactableObjects.GetClosest(transform.position);
             Interactable interactableObject = closestCollider.GetComponent<Interactable>();
-            if (interactableObject != null)
+            if (interactableObject != null && interactableObject != _closestInteractableObject)
             {
                 _closestInteractableObject = interactableObject;
                 _closestInteractableObject.GainFocus();
@@ -68,10 +68,11 @@ public class Interactor : MonoBehaviour {
         }
         else
         {
-            if (_closestInteractableObject != null)
+            if (_closestInteractableObject != null) {
                 _closestInteractableObject.LoseFocus();
-            _closestInteractableObject = null;
-            ClearInteraction();
+                _closestInteractableObject = null;
+                ClearInteraction();
+            }
         }
     }
 
