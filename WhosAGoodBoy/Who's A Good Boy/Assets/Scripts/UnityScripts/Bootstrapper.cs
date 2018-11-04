@@ -9,10 +9,11 @@ public class Bootstrapper : MonoBehaviour {
 
     void Awake()
     {
-        foreach (GameObject GO in _bootStrappedObjects)
-        {
-            if (transform.Find(GO.name) == null)
-                Instantiate(GO, transform);
+        if (LevelManager.Instance == null) {
+            foreach (GameObject GO in _bootStrappedObjects) {
+                if (transform.Find(GO.name) == null)
+                    Instantiate(GO, transform);
+            }
         }
         Destroy(this);
     }

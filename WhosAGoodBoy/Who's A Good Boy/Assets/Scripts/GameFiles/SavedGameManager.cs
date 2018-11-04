@@ -12,6 +12,7 @@ public class SaveData {
 
 public class SavedGameManager : MonoBehaviour {
     private SaveData saveData;
+    private PlayerController playerController;
     string dataPath;
 
     public static SavedGameManager Instance;
@@ -25,6 +26,9 @@ public class SavedGameManager : MonoBehaviour {
             Destroy(this);
 
         saveData = new SaveData();
+
+        //Get Player Controller in scene
+        playerController = GameObject.FindObjectOfType<PlayerController>();
     }
 
     void Start()
@@ -56,8 +60,8 @@ public class SavedGameManager : MonoBehaviour {
     {
         if (LevelManager.Instance.overworldSceneName == SceneManager.GetActiveScene().name)
         {
-            saveData.lastOverworldPosition = PlayerController.Player.transform.position;
-            saveData.lastOverworldFacing = PlayerController.Player.GetFacing().ToInt();
+            saveData.lastOverworldPosition = playerController.transform.position;
+            saveData.lastOverworldFacing = playerController.GetFacing().ToInt();
         }
     }
 
@@ -65,8 +69,8 @@ public class SavedGameManager : MonoBehaviour {
     {
         Scene currentScene = SceneManager.GetActiveScene();
         if (LevelManager.Instance.overworldSceneName == currentScene.name) {
-            PlayerController.Player.transform.position = saveData.lastOverworldPosition;
-            PlayerController.Player.SetFacing(saveData.lastOverworldFacing.ToCardinal());
+            playerController.transform.position = saveData.lastOverworldPosition;
+            playerController.SetFacing(saveData.lastOverworldFacing.ToCardinal());
         }
     }
 
